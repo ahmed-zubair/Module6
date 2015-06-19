@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p id="demo1"> </p>
+<p id="demo2"> </p>
+<p id="demo3"> </p>
+<p id="demo4"> </p>
+<p id="demo5"> </p>
+
+<script>
+
+var ali = {   
+	firstname: 'ali', 	  
+	say_hi: function(firstname) {
+	     alert("Greetings " + firstname + ", you are talking to " + this.firstname + "!");
+	 } 
+}; 
+
+/*Here is the fixed code where the function is can find the unique calling object. Where as in the bugged version there was a call like this:
+var some_ref = ali.say_hi;
+some_ref("Sabir")
+In this case, ali.say_hi was stored in some_ref but since argument which has to be resolved to this.firstname in the function is not provided, so this dangling reference to the calling object gets called as window.firstname. Since it is undefined in the window so the result is undefined. However, when an argument is explicitly parsed to the function, 'this' reference is resolved and the program works as expected.  */
+var some_ref = ali.say_hi("Sabir"); 
+var again = ali.say_hi('Ahmed')
+document.getElementById("demo4").innerHTML = ali.firstname;
+
+</script>
+
+</body>
+</html>
